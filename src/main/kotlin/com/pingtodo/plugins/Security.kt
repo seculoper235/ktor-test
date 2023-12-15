@@ -18,7 +18,7 @@ fun Application.configureSecurity() {
     val jwtDomain = "https://jwt-provider-domain/"
     val jwtRealm = "ktor sample app"
     val jwtSecret = "secret"
-    authentication {
+    /*authentication {
         jwt {
             realm = jwtRealm
             verifier(
@@ -32,8 +32,8 @@ fun Application.configureSecurity() {
                 if (credential.payload.audience.contains(jwtAudience)) JWTPrincipal(credential.payload) else null
             }
         }
-    }
-    authentication {
+    }*/
+    /*authentication {
         oauth("auth-oauth-google") {
             urlProvider = { "http://localhost:8080/callback" }
             providerLookup = {
@@ -62,7 +62,7 @@ fun Application.configureSecurity() {
                 call.respondRedirect("/hello")
             }
         }
-    }
+    }*/
 }
 
 class UserSession(accessToken: String)

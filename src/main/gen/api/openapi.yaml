@@ -5,7 +5,73 @@ info:
   version: 1.0.0
 servers:
 - url: https://ktor_test
-paths: {}
+paths:
+  /:
+    get:
+      description: Hello World!
+      responses:
+        "200":
+          content:
+            text/plain:
+              examples:
+                Example#1:
+                  value: Hello World!
+              schema:
+                type: string
+          description: OK
+      x-accepts: text/plain
+  /users:
+    post:
+      description: Show your name!
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExposedUser'
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExposedUser'
+          description: OK
+      x-content-type: application/json
+      x-accepts: application/json
+  /users/{userId}:
+    get:
+      parameters:
+      - description: ID of pet to return
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExposedUser'
+          description: OK
+      x-accepts: application/json
 components:
-  schemas: {}
+  schemas:
+    ExposedUser:
+      example:
+        name: pingping
+        age: 29
+      properties:
+        name:
+          example: pingping
+          type: string
+        age:
+          example: 29
+          format: int64
+          type: integer
+      type: object
+      xml:
+        name: exposedUser
 

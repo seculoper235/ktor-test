@@ -19,5 +19,49 @@ paths:
               examples:
                 Example#1:
                   value: "Hello World!"
+  /users:
+    post:
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExposedUser"
+        required: true
+      description: "Show your name!"
+      responses:
+        "200":
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExposedUser"
+  /users/{userId}:
+    get:
+      parameters:
+        - name: userId
+          in: path
+          description: ID of pet to return
+          required: true
+          schema:
+            type: integer
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExposedUser"
 components:
   schemas:
+    ExposedUser:
+      type: object
+      properties:
+        name:
+          type: string
+          example: pingping
+        age:
+          type: integer
+          format: int64
+          example: 29
+      xml:
+        name: exposedUser

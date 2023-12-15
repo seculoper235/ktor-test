@@ -9,18 +9,20 @@ import io.ktor.server.routing.*
 
 fun Application.configureHTTP() {
     install(CORS) {
-        allowMethod(HttpMethod.Options)
+        allowHost("0.0.0.0:8080")
+        allowMethod(HttpMethod.Get)
+        allowMethod(HttpMethod.Post)
         allowMethod(HttpMethod.Put)
         allowMethod(HttpMethod.Delete)
         allowMethod(HttpMethod.Patch)
         allowHeader(HttpHeaders.Authorization)
-        allowHeader("MyCustomHeader")
+        allowHeader(HttpHeaders.ContentType)
         anyHost() // @TODO: Don't do this in production if possible. Try to limit it.
     }
     routing {
         openAPI(path = "openapi")
     }
     routing {
-        swaggerUI(path = "openapi")
+        swaggerUI(path = "swagger")
     }
 }

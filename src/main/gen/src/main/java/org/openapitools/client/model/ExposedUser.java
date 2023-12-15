@@ -1,6 +1,6 @@
 /*
- * Application API
- * Application API
+ * ktor_test API
+ * ktor_test API
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -47,11 +47,11 @@ import org.openapitools.client.JSON;
 /**
  * ExposedUser
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-12-12T23:01:42.256986+09:00[Asia/Seoul]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-12-15T23:08:17.653733+09:00[Asia/Seoul]")
 public class ExposedUser {
-  public static final String SERIALIZED_NAME_ID = "id";
-  @SerializedName(SERIALIZED_NAME_ID)
-  private String id;
+  public static final String SERIALIZED_NAME_NAME = "name";
+  @SerializedName(SERIALIZED_NAME_NAME)
+  private String name;
 
   public static final String SERIALIZED_NAME_AGE = "age";
   @SerializedName(SERIALIZED_NAME_AGE)
@@ -60,26 +60,26 @@ public class ExposedUser {
   public ExposedUser() {
   }
 
-  public ExposedUser id(String id) {
+  public ExposedUser name(String name) {
     
-    this.id = id;
+    this.name = name;
     return this;
   }
 
    /**
-   * Get id
-   * @return id
+   * Get name
+   * @return name
   **/
   @javax.annotation.Nullable
   @ApiModelProperty(example = "pingping", value = "")
 
-  public String getId() {
-    return id;
+  public String getName() {
+    return name;
   }
 
 
-  public void setId(String id) {
-    this.id = id;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -116,20 +116,20 @@ public class ExposedUser {
       return false;
     }
     ExposedUser exposedUser = (ExposedUser) o;
-    return Objects.equals(this.id, exposedUser.id) &&
+    return Objects.equals(this.name, exposedUser.name) &&
         Objects.equals(this.age, exposedUser.age);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, age);
+    return Objects.hash(name, age);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ExposedUser {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    age: ").append(toIndentedString(age)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -153,7 +153,7 @@ public class ExposedUser {
   static {
     // a set of all properties/fields (JSON key names)
     openapiFields = new HashSet<String>();
-    openapiFields.add("id");
+    openapiFields.add("name");
     openapiFields.add("age");
 
     // a set of required properties/fields (JSON key names)
@@ -182,8 +182,8 @@ public class ExposedUser {
           throw new IllegalArgumentException(String.format("The field `%s` in the JSON string is not defined in the `ExposedUser` properties. JSON: %s", entry.getKey(), jsonObj.toString()));
         }
       }
-      if ((jsonObj.get("id") != null && !jsonObj.get("id").isJsonNull()) && !jsonObj.get("id").isJsonPrimitive()) {
-        throw new IllegalArgumentException(String.format("Expected the field `id` to be a primitive type in the JSON string but got `%s`", jsonObj.get("id").toString()));
+      if ((jsonObj.get("name") != null && !jsonObj.get("name").isJsonNull()) && !jsonObj.get("name").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `name` to be a primitive type in the JSON string but got `%s`", jsonObj.get("name").toString()));
       }
   }
 

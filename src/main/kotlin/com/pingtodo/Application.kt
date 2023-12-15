@@ -11,11 +11,12 @@ fun main() {
 }
 
 fun Application.module() {
-    configureSecurity()
+//    configureSecurity()
     configureHTTP()
     configureMonitoring()
     configureSerialization()
-    configureDatabases()
+//    configureH2Databases()
+    configurePostgresDatabases()
     configureSockets()
     configureRouting()
 }

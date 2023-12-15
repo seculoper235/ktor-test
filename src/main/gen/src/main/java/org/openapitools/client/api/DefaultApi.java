@@ -1,6 +1,6 @@
 /*
- * Application API
- * Application API
+ * ktor_test API
+ * ktor_test API
  *
  * The version of the OpenAPI document: 1.0.0
  * 
@@ -219,7 +219,7 @@ public class DefaultApi {
         Object localVarPostBody = exposedUser;
 
         // create path and map variables
-        String localVarPath = "/users/";
+        String localVarPath = "/users";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -265,7 +265,7 @@ public class DefaultApi {
      * 
      * Show your name!
      * @param exposedUser  (required)
-     * @return String
+     * @return ExposedUser
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -273,8 +273,8 @@ public class DefaultApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public String usersPost(ExposedUser exposedUser) throws ApiException {
-        ApiResponse<String> localVarResp = usersPostWithHttpInfo(exposedUser);
+    public ExposedUser usersPost(ExposedUser exposedUser) throws ApiException {
+        ApiResponse<ExposedUser> localVarResp = usersPostWithHttpInfo(exposedUser);
         return localVarResp.getData();
     }
 
@@ -282,7 +282,7 @@ public class DefaultApi {
      * 
      * Show your name!
      * @param exposedUser  (required)
-     * @return ApiResponse&lt;String&gt;
+     * @return ApiResponse&lt;ExposedUser&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      * @http.response.details
      <table summary="Response Details" border="1">
@@ -290,9 +290,9 @@ public class DefaultApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public ApiResponse<String> usersPostWithHttpInfo(ExposedUser exposedUser) throws ApiException {
+    public ApiResponse<ExposedUser> usersPostWithHttpInfo(ExposedUser exposedUser) throws ApiException {
         okhttp3.Call localVarCall = usersPostValidateBeforeCall(exposedUser, null);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<ExposedUser>(){}.getType();
         return localVarApiClient.execute(localVarCall, localVarReturnType);
     }
 
@@ -309,10 +309,137 @@ public class DefaultApi {
         <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
      </table>
      */
-    public okhttp3.Call usersPostAsync(ExposedUser exposedUser, final ApiCallback<String> _callback) throws ApiException {
+    public okhttp3.Call usersPostAsync(ExposedUser exposedUser, final ApiCallback<ExposedUser> _callback) throws ApiException {
 
         okhttp3.Call localVarCall = usersPostValidateBeforeCall(exposedUser, _callback);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<ExposedUser>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for usersUserIdGet
+     * @param userId ID of pet to return (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call usersUserIdGetCall(Integer userId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/users/{userId}"
+            .replaceAll("\\{" + "userId" + "\\}", localVarApiClient.escapeString(userId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] {  };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call usersUserIdGetValidateBeforeCall(Integer userId, final ApiCallback _callback) throws ApiException {
+        
+        // verify the required parameter 'userId' is set
+        if (userId == null) {
+            throw new ApiException("Missing the required parameter 'userId' when calling usersUserIdGet(Async)");
+        }
+        
+
+        okhttp3.Call localVarCall = usersUserIdGetCall(userId, _callback);
+        return localVarCall;
+
+    }
+
+    /**
+     * 
+     * 
+     * @param userId ID of pet to return (required)
+     * @return ExposedUser
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public ExposedUser usersUserIdGet(Integer userId) throws ApiException {
+        ApiResponse<ExposedUser> localVarResp = usersUserIdGetWithHttpInfo(userId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * 
+     * 
+     * @param userId ID of pet to return (required)
+     * @return ApiResponse&lt;ExposedUser&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<ExposedUser> usersUserIdGetWithHttpInfo(Integer userId) throws ApiException {
+        okhttp3.Call localVarCall = usersUserIdGetValidateBeforeCall(userId, null);
+        Type localVarReturnType = new TypeToken<ExposedUser>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     *  (asynchronously)
+     * 
+     * @param userId ID of pet to return (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table summary="Response Details" border="1">
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> OK </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call usersUserIdGetAsync(Integer userId, final ApiCallback<ExposedUser> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = usersUserIdGetValidateBeforeCall(userId, _callback);
+        Type localVarReturnType = new TypeToken<ExposedUser>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }

@@ -2,7 +2,7 @@
 
 ktor_test API
 - API version: 1.0.0
-  - Build date: 2023-12-12T21:45:13.225206+09:00[Asia/Seoul]
+  - Build date: 2023-12-15T23:08:17.653733+09:00[Asia/Seoul]
 
 ktor_test API
 
@@ -79,6 +79,32 @@ Please follow the [installation](#installation) instruction and execute the foll
 
 ```java
 
+// Import classes:
+import org.openapitools.client.ApiClient;
+import org.openapitools.client.ApiException;
+import org.openapitools.client.Configuration;
+import org.openapitools.client.models.*;
+import org.openapitools.client.api.DefaultApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://ktor_test");
+
+    DefaultApi apiInstance = new DefaultApi(defaultClient);
+    try {
+      String result = apiInstance.rootGet();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling DefaultApi#rootGet");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+
 ```
 
 ## Documentation for API Endpoints
@@ -87,10 +113,14 @@ All URIs are relative to *https://ktor_test*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*DefaultApi* | [**rootGet**](docs/DefaultApi.md#rootGet) | **GET** / | 
+*DefaultApi* | [**usersPost**](docs/DefaultApi.md#usersPost) | **POST** /users | 
+*DefaultApi* | [**usersUserIdGet**](docs/DefaultApi.md#usersUserIdGet) | **GET** /users/{userId} | 
 
 
 ## Documentation for Models
 
+ - [ExposedUser](docs/ExposedUser.md)
 
 
 ## Documentation for Authorization
@@ -103,5 +133,6 @@ Authentication schemes defined for the API:
 It's recommended to create an instance of `ApiClient` per thread in a multithreaded environment to avoid any potential issues.
 
 ## Author
+
 
 

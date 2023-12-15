@@ -5,17 +5,16 @@ import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransacti
 import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import kotlinx.serialization.Serializable
 import kotlinx.coroutines.Dispatchers
+import org.h2.engine.User
+import org.jetbrains.exposed.dao.id.IntIdTable
 import org.jetbrains.exposed.sql.*
 
 @Serializable
 data class ExposedUser(val name: String, val age: Int)
 class UserService(private val database: Database) {
-    object Users : Table() {
-        val id = integer("id").autoIncrement()
+    object Users : IntIdTable() {
         val name = varchar("name", length = 50)
         val age = integer("age")
-
-        override val primaryKey = PrimaryKey(id)
     }
 
     init {
@@ -27,11 +26,22 @@ class UserService(private val database: Database) {
     suspend fun <T> dbQuery(block: suspend () -> T): T =
         newSuspendedTransaction(Dispatchers.IO) { block() }
 
-    suspend fun create(user: ExposedUser): Int = dbQuery {
-        Users.insert {
-            it[name] = user.name
-            it[age] = user.age
-        }[Users.id]
+    suspend fun create(user: ExposedUser): ExposedUser {
+        val id = dbQuery {
+            Users.insertAndGetId {
+                it[name] = user.name
+                it[age] = user.age
+            }.value
+        }
+
+        val createUser = dbQuery {
+            Users.select { Users.id eq id }.first()
+        }
+
+        return ExposedUser(
+            name = createUser[Users.name],
+            age = createUser[Users.age]
+        )
     }
 
     suspend fun read(id: Int): ExposedUser? {
