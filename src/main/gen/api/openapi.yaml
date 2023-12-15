@@ -1,0 +1,11 @@
+openapi: 3.0.3
+info:
+  description: ktor_test API
+  title: ktor_test API
+  version: 1.0.0
+servers:
+- url: https://ktor_test
+paths: {}
+components:
+  schemas: {}
+
